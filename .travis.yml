@@ -4,7 +4,7 @@ services:
   - docker
 # Run before deploying or before testing
 before_install:
-  - docker build -f -t andersonpem/docker-vue-test Dockerfile.dev .
+  - docker build -f Dockerfile.dev -t andersonpem/docker-vue-test .
 # The commands we want to run in the test suite
 script:
   - docker run andersonpem/docker-vue-test npm run test:unit
