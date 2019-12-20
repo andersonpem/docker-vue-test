@@ -1,0 +1,10 @@
+# Super user permissions are required to use Docker
+sudo: required
+services:
+  - docker
+# Run before deploying or before testing
+before_install:
+  - docker build -f -t andersonpem/docker-vue-test Dockerfile.dev .
+# The commands we want to run in the test suite
+script:
+  - docker run andersonpem/docker-vue-test npm run test:unit
