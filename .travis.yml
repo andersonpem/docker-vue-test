@@ -8,3 +8,16 @@ before_install:
 # The commands we want to run in the test suite
 script:
   - docker run andersonpem/docker-vue-test npm run test:unit
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "Docker Vue"
+  env: "DockerVue-env"
+  bucket_name: "elasticbeanstalk-us-east-2-032950508404"
+  bucket_path: "Docker Vue"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
