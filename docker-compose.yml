@@ -1,0 +1,24 @@
+version: '3'
+services: 
+  web:
+    restart: on-failure
+    build:
+      context: .
+      dockerfile: ./Dockerfile.dev
+    image: andersonpem/vue-webapp:latest
+    ports: 
+      - "8080:8080"
+    volumes: 
+      - /app/node_modules
+      - ./frontend:/app
+  # Test Suite
+  test:
+    restart: on-failure
+    build:
+      context: .
+      dockerfile: ./Dockerfile.dev
+    image: andersonpem/vue-webapp:latest
+    volumes: 
+      - /app/node_modules
+      - ./frontend:/app
+    command: ["npm", "run", "test:unit"]
